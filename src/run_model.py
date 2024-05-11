@@ -15,12 +15,12 @@ from xgboost import XGBClassifier
 
 from sklearn.metrics import accuracy_score, confusion_matrix
 
-import matplotlib.pyplot as plt
-import seaborn as sns
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
 
-X_train = pd.read_csv('../data/train - train.csv')
-# X_test = pd.read_csv('../data/test - test.csv')
+X_train = pd.read_csv('../data/train.csv')
+X_test = pd.read_csv('../data/test.csv')
 # X_test.drop(columns=['id'], inplace=True)
 remove_feat = []
 X_train.drop(columns= remove_feat, inplace=True)
@@ -51,19 +51,21 @@ def prepare_data(data):
     data = fill_missing_values(data)
     return data
 
-def model(x):
-    # data preprocessing 
-    x = prepare_data(x)
-    
-    #load models
+class Model():
     folds = []
     for i in range(5):
-        folds.append(load('./models/'+'model_'+str(i)+'.joblib'))
-        
-    #predictions 
-    all_preds = []
-    for model in folds:
-        pred = model.predict(x)
-        all_preds.append(pred)
-    y_pred = np.rint(np.mean(all_preds, axis=0))
-    return y_pred
+        folds.append(load('../models/'+'model_'+str(i)+'.joblib'))
+    
+    def __call__(self, x):
+        # data preprocessing 
+        x = prepare_data(x)
+
+        #load models
+
+        #predictions 
+        all_preds = []
+        for model in self.folds:
+            pred = model.predict(x)
+            all_preds.append(pred)
+        y_pred = np.rint(np.mean(all_preds, axis=0))
+        return y_pred
