@@ -25,6 +25,10 @@ X_test = pd.read_csv('../data/test.csv')
 remove_feat = []
 X_train.drop(columns= remove_feat, inplace=True)
 
+class Config:
+    save_models_directory = '../models/'
+config = Config()
+
 
 def normalize(df):
     feat = ['battery_power','clock_speed', 'fc', 'int_memory', 'm_dep', 'mobile_wt', 'n_cores', 'pc', 'px_height', 'px_width', 'ram', 'sc_h', 'sc_w', 'talk_time']
@@ -54,7 +58,7 @@ def prepare_data(data):
 class Model():
     folds = []
     for i in range(5):
-        folds.append(load('../models/'+'model_'+str(i)+'.joblib'))
+        folds.append(load(config.save_models_directory+'model_'+str(i)+'.joblib'))
     
     def __call__(self, x):
         # data preprocessing 
