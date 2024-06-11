@@ -134,6 +134,14 @@ public class Device {
         return clockSpeed;
     }
 
+    public Integer getPc() {
+        return pc;
+    }
+
+    public void setPc(Integer pc) {
+        this.pc = pc;
+    }
+
     public void setClockSpeed(Float clockSpeed) {
         this.clockSpeed = clockSpeed;
     }
