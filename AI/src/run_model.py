@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 
@@ -19,16 +20,19 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 # import seaborn as sns
 
 
-X_train = pd.read_csv('../data/train.csv')
-X_test = pd.read_csv('../data/test.csv')
 # X_test.drop(columns=['id'], inplace=True)
+
+class CFG:
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_train_path = os.path.join(current_dir, '../data/train.csv')
+    csv_test_path = os.path.join(current_dir, '../data/test.csv')
+    save_models_directory = os.path.join(current_dir,'../models/')
+
+
+X_train = pd.read_csv(CFG.csv_train_path)
+X_test = pd.read_csv(CFG.csv_test_path)
 remove_feat = []
 X_train.drop(columns= remove_feat, inplace=True)
-
-class Config:
-    save_models_directory = '../models/'
-config = Config()
-
 
 def normalize(df):
     feat = ['battery_power','clock_speed', 'fc', 'int_memory', 'm_dep', 'mobile_wt', 'n_cores', 'pc', 'px_height', 'px_width', 'ram', 'sc_h', 'sc_w', 'talk_time']
@@ -58,7 +62,7 @@ def prepare_data(data):
 class Model():
     folds = []
     for i in range(5):
-        folds.append(load(config.save_models_directory+'model_'+str(i)+'.joblib'))
+        folds.append(load(CFG.save_models_directory+'model_'+str(i)+'.joblib'))
     
     def __call__(self, x):
         # data preprocessing 

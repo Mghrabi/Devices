@@ -15,59 +15,64 @@ public class Device {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "battery_power")
+    @Column(name = "battery_power", nullable = false)
     private Integer batteryPower;
 
-    @Column(name = "clock_speed")
+    @Column(name = "clock_speed" , nullable = false)
     private Float clockSpeed;
 
+    @Column(name = "blue",  nullable = false)
     private Boolean blue;
 
-    @Column(name = "dual_sim")
+    @Column(name = "dual_sim",  nullable = false)
     private Boolean dualSim;
 
+    @Column(name = "fc",  nullable = false)
     private Integer fc;
 
-    @Column(name = "four_g")
+    @Column(name = "four_g", nullable = false)
     private Float fourG;
 
-    @Column(name = "int_memory")
+    @Column(name = "int_memory", nullable = false)
     private Float intMemory;
 
-    @Column(name = "m_dep")
+    @Column(name = "m_dep", nullable = false)
     private Float mDep;
 
-    @Column(name = "mobile_wt")
+    @Column(name = "mobile_wt", nullable = false)
     private Float mobileWt;
 
-    @Column(name = "n_cores")
+    @Column(name = "n_cores", nullable = false)
     private Float nCores;
 
+    @Column(name = "pc", nullable = false)
     private Integer pc;
 
-    @Column(name = "px_height")
+    @Column(name = "px_height", nullable = false)
     private Float pxHeight;
 
-    @Column(name = "px_width")
+    @Column(name = "px_width", nullable = false)
     private Float pxWidth;
 
+    @Column(name = "ram", nullable = false)
     private Float ram;
 
-    @Column(name = "sc_h")
+    @Column(name = "sc_h", nullable = false)
     private Float scH;
 
-    @Column(name = "sc_w")
+    @Column(name = "sc_w", nullable = false)
     private Float scW;
 
-    @Column(name = "talk_time")
+    @Column(name = "talk_time", nullable = false)
     private Integer talkTime;
 
-    @Column(name = "three_g")
+    @Column(name = "three_g", nullable = false)
     private Boolean threeG;
 
-    @Column(name = "touch_screen")
+    @Column(name = "touch_screen", nullable = false)
     private Boolean touchScreen;
 
+    @Column(name = "wifi", nullable = false)
     private Boolean wifi;
 
     @Column(name = "price_range", nullable = true)
